@@ -1,0 +1,20 @@
+body {
+    font-family: 'Orbitron', 'Courier New', Courier, monospace;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #1a1a3e;
+    color: #e0e0e0;
+}
+
+canvas{
+    display: none;
+    background-color: #0d0d1a;
+    border: 2px solid #00f0ff;
+    border-radius: 10px;
+}
+
+#resetGame {
+    display: none;
+}

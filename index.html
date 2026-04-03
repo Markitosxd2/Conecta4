@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Conecta 4</title>
+</head>
+<body>
+    <h1>Conecta 4</h1>
+    <p id="subtitulo">Conecta 4 fichas de tu color de manera horizontal, vertical o diagonal para ganar</p>
+    <p id="instrucciones">Instrucciones: Coloca tus fichas en el tablero, intenta conectar 4 fichas de tu color en línea recta o diagonal para ganar.</p>
+    <p id="mensaje"></p>
+    <p id="alert"></p>
+    <div id="configuracion">
+        <label for="player1">Jugador 1:</label>
+        <input type="text" id="player1" placeholder="Nombre del Jugador 1">
+        <label for="player2">Jugador 2:</label>
+        <input type="text" id="player2" placeholder="Nombre del Jugador 2">
+        <label for="rows">Ingrese el numero de filas que desee:</label>
+        <input type="number" id="rows" placeholder="Filas" value="6" min="6" max="12">
+        <label for="columns">Ingrese el numero de columnas que desee:</label>
+        <input type="number" id="columns" placeholder="Columnas" value="7" min="7" max="12">
+        <button id="standar" onclick="standar()">Standar Version</button>
+        <button id="startGame" onclick="dibujaTablero()">Iniciar Juego</button>
+    </div>
+    <canvas id="gameCanvas" width="420" height="350" onmousedown="position(event)"></canvas>
+    <button id="resetGame" onclick="limpia()">Nuevo Juego</button>
+    <script src="script.js"></script>
+</body>
+</html>
