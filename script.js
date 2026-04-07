@@ -35,6 +35,8 @@ function inicia(){
 // Limpia el canvas y reinicia el juego
 function limpia() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.shadowColor = "transparent";
+    ctx.shadowBlur = 0;              
     gameActive = false;
     turno = 1;
     canvas.style.display = "none";
@@ -47,8 +49,8 @@ function limpia() {
 // Dibuja el tablero y prepara el juego
 function dibujaTablero() {
     gameActive = true;
-    rowsNumber = parseInt(document.getElementById('rows').value);
-    columnsNumber = parseInt(document.getElementById('columns').value);
+    rowsNumber = parseInt(rows.value);
+    columnsNumber = parseInt(columns.value);
     if(rowsNumber<6 || rowsNumber>12 || columnsNumber<7 || columnsNumber>12){
         mensaje.textContent = "Ingrese un número válido para jugar";
         mensaje.style.color = "#ff2a6d";
@@ -144,11 +146,14 @@ function position(event) {
 
 // Dibuja la ficha en el tablero dependiendo del jugador que la coloque
 function dibujaFicha(column, row, color) {
+
+    ctx.clearRect(column * ancho + 2, row * alto + 2, ancho - 4, alto - 4);
+
     ctx.beginPath();
         ctx.arc(column*ancho + ancho/2, row*alto + alto/2, Math.min(ancho, alto)/2 - 5, 0, 2 * Math.PI);
         ctx.fillStyle = color;
         ctx.fill();
-        ctx.strokeStyle = "#000000";
+        ctx.strokeStyle = "#000";
         ctx.lineWidth = 2;
     ctx.stroke();
 }
@@ -253,37 +258,35 @@ function checkWin(posColumn, posRow, player) {
 
 // Dibuja la línea que indica la combinación ganadora dependiendo de la dirección en la que se haya dado el triunfo
 function drawWin(win, posColumn, posRow) {
+    ctx.strokeStyle = "#ffd60a";
+    ctx.shadowColor = "#ffd60a";
+    ctx.shadowBlur = 10;
+    ctx.lineCap = "round";
+    ctx.lineWidth = 5;
+
     switch(win){
         case 1: // Ganó hacia la derecha
             ctx.beginPath();
                 ctx.moveTo(posColumn*ancho + ancho/3, posRow*alto + alto/2);
                 ctx.lineTo((posColumn + 3)*ancho + (2*ancho/3), posRow*alto + alto/2);
-                ctx.strokeStyle = "#ffd60a";
-                ctx.lineWidth = 5;
             ctx.stroke();
             break;
         case 2: // Ganó hacia abajo
             ctx.beginPath();
                 ctx.moveTo(posColumn*ancho + ancho/2, posRow*alto + alto/3);
                 ctx.lineTo(posColumn*ancho + ancho/2, (posRow + 3)*alto + (2*alto/3));
-                ctx.strokeStyle = "#ffd60a";
-                ctx.lineWidth = 5;
             ctx.stroke();
             break;
         case 3: // Ganó diagonal hacia abajo a la derecha
             ctx.beginPath();
                 ctx.moveTo(posColumn*ancho + ancho/3, posRow*alto + alto/3);
                 ctx.lineTo((posColumn + 3)*ancho + (2*ancho/3), (posRow + 3)*alto + (2*alto/3));
-                ctx.strokeStyle = "#ffd60a";
-                ctx.lineWidth = 5;
             ctx.stroke();
             break;
         case 4: // Ganó diagonal hacia arriba a la derecha
             ctx.beginPath();
                 ctx.moveTo(posColumn*ancho + ancho/3, posRow*alto + (2*alto/3));
                 ctx.lineTo((posColumn + 3)*ancho + (2*ancho/3), (posRow - 3)*alto + alto/3);
-                ctx.strokeStyle = "#ffd60a";
-                ctx.lineWidth = 5;
             ctx.stroke();
             break;
     }
@@ -292,4 +295,32 @@ function drawWin(win, posColumn, posRow) {
 function standar(){
     rows.value = 6;
     columns.value = 7;
+}
+
+function iluminaCelda(evt) {
+    var pos = getMousePos(evt);
+    var px = Math.floor(pos / ancho);
+
+    if(!gameActive || board[0][px] !== 0) return;
+
+    for(let i = 0; i < rowsNumber; i++){
+        for(let j = 0; j < columnsNumber; j++){
+            if(board[i][j] === 0){
+                ctx.clearRect(j * ancho + 2, i * alto + 2, ancho - 4, alto - 4);
+            }
+        }
+    }
+
+    ctx.fillStyle = "#00f0ff66";
+    ctx.fillRect(px * ancho, findRow(px) * alto, ancho, alto);
+}
+
+function limpiaCelda() {
+    for(let i = 0; i < rowsNumber; i++){
+        for(let j = 0; j < columnsNumber; j++){
+            if(board[i][j] === 0){
+                ctx.clearRect(j * ancho + 2, i * alto + 2, ancho - 4, alto - 4);
+            }
+        }
+    }
 }

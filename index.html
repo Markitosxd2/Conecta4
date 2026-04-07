@@ -20,13 +20,13 @@
         <label for="player2">Jugador 2:</label>
         <input type="text" id="player2" placeholder="Nombre del Jugador 2">
         <label for="rows">Ingrese el numero de filas que desee:</label>
-        <input type="number" id="rows" placeholder="Filas" value="6" min="6" max="12">
+        <input type="number" id="rows" placeholder="6-12" min="6" max="12">
         <label for="columns">Ingrese el numero de columnas que desee:</label>
-        <input type="number" id="columns" placeholder="Columnas" value="7" min="7" max="12">
-        <button id="standar" onclick="standar()">Standar Version</button>
+        <input type="number" id="columns" placeholder="7-12" min="7" max="12">
+        <button id="standar" onclick="standar()">Versión Estándar</button>
         <button id="startGame" onclick="dibujaTablero()">Iniciar Juego</button>
     </div>
-    <canvas id="gameCanvas" width="420" height="350" onmousedown="position(event)"></canvas>
+    <canvas id="gameCanvas" width="420" height="350" onmousedown="position(event)" onmouseup="iluminaCelda(event)" onmousemove="iluminaCelda(event)" onmouseout="limpiaCelda()"></canvas>
     <button id="resetGame" onclick="limpia()">Nuevo Juego</button>
     <script src="script.js"></script>
 </body>

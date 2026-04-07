@@ -2,19 +2,168 @@ body {
     font-family: 'Orbitron', 'Courier New', Courier, monospace;
     justify-content: center;
     align-items: center;
+    text-align: center;
     height: 100vh;
     margin: 0;
-    background-color: #1a1a3e;
+    background: radial-gradient(ellipse at center, #1a1a3e 0%, #0d0d1a 100%);
     color: #e0e0e0;
+    padding: 40px 20px;
 }
 
 canvas{
+    margin: 24px auto 0;
     display: none;
     background-color: #0d0d1a;
+    box-shadow: 0 0 15px #00f0ff55;
     border: 2px solid #00f0ff;
     border-radius: 10px;
+    width: clamp(300px, 80vw, 600px);
+    height: clamp(300px, 80vh, 600px);
+}
+
+canvas:hover{
+    box-shadow: 0 0 35px #00f0ff55;
+}
+
+h1{
+    font-weight: bolder;
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    width: 100%;
+    margin-bottom: 16px;
+    background: linear-gradient(90deg, #c77dff, #ff2d2d);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+p, label{
+    font-weight: bolder;
+    font-size: large;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+label{
+    font-size: medium;
+    color: #55a;
+    text-shadow: 0 0 5px #55a;
+    letter-spacing: 0.15em;
+    margin-bottom: 6px;
+}
+
+p#subtitulo, p#instrucciones{
+    font-size: small;
+    color: #55a;
+    text-shadow: 0 0 5px #55a;
+    letter-spacing: 0.2em;
+    margin-top: 0;
+    margin-bottom: 24px;
+}
+
+label[for="player1"]{
+    color: #c77dff;
+    text-shadow: 0 0 5px #c77dff;
+}
+
+label[for="player2"]{
+    color: #ff2d2d;
+    text-shadow: 0 0 5px #ff2d2d;
+}
+
+button{
+    margin: 10px auto 0;
+    font-family: 'Orbitron', 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-size: large;
+    background-color: transparent;
+    color: #00f0ff;
+    border: 2px solid #00f0ff;
+    box-shadow: 0 0 10px #00f0ff55;
+    text-shadow: 0 0 5px #00f0ff;
+    padding : 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+button:hover{
+    background-color: #00f0ff;
+    color: #1a1a2e;
+    border-color: transparent;
+}
+
+button#resetGame:hover{
+    background-color: #ff2a6d;
+    color: #1a1a2e;
+    border-color: transparent;
+}
+
+input{
+    display: block;
+    margin: 10px auto;
+    font-family: 'Orbitron', 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-size: large;
+    background-color: transparent;
+    color: #00f0ff;
+    border: 2px solid #00f0ff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #00f0ff55;
+    text-shadow: 0 0 5px #00f0ff;
+    padding: 10px 16px;
+    width: 60px;
+    text-align: center;
+}
+
+input#player1, input#player2{
+    font-size: small;
+    width: 170px;
+}
+
+input#player2:focus{
+    border-color: #ff2d2d;
+    box-shadow: 0 0 10px #ff2d2d55;
+}
+
+input#player1:focus{
+    border-color: #c77dff;
+    box-shadow: 0 0 10px #c77dff55;
+}
+
+input:focus{
+    outline: none;
+    border-color: #55a;
+    box-shadow: 0 0 8px #55a5;
+}
+
+input::placeholder {
+    text-shadow: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#configuracion{
+    display: block;
+    background-color: #0d0d20;
+    border: 1px solid #1a1a35;
+    border-radius: 12px;
+    padding: 24px 32px;
+    align-items: center;
+    gap: 12px;
+    width: fit-content;
+    margin: 16px auto 0;
 }
 
 #resetGame {
     display: none;
+    color: #ff2a6d;
+    border-color: #ff2a6d;
+    box-shadow: 0 0 10px #ff2a6d55;
+    text-shadow: 0 0 5px #ff2a6d;
+    font-size: medium;
+    margin-top: 16px;
 }
